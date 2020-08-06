@@ -4,11 +4,12 @@ class OysterCard
   MAXBALANCE = 90
   MINCHARGE = 1
 
-  attr_reader :balance, :in_transit
+  attr_reader :balance, :in_transit, :entry_station
 
   def initialize
     @balance = 0
     @in_transit = false
+    @entry_station = nil
   end
 
   def top_up(number)
@@ -19,6 +20,7 @@ class OysterCard
   def touch_in(station)
     raise "minimum balance of #{OysterCard::MINBALANCE} required to touch in" if @balance < MINBALANCE
     @in_transit = true
+    @entry_station = station
   end
 
   def touch_out
