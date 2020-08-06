@@ -15,6 +15,12 @@ describe OysterCard do
     expect(subject.in_transit).to be true
   end
 
+  it 'allows a card to be touched out after a journey' do
+    subject.touch_in
+    subject.touch_out
+    expect(subject.in_transit).to be false
+  end
+
   describe '#top_up' do
 
     it 'has the ability to top up a card' do
