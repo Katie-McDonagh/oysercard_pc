@@ -16,7 +16,7 @@ class OysterCard
     @balance += number
   end
 
-  def touch_in
+  def touch_in(station)
     raise "minimum balance of #{OysterCard::MINBALANCE} required to touch in" if @balance < MINBALANCE
     @in_transit = true
   end
