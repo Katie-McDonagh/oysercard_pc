@@ -25,4 +25,8 @@ class OysterCard
   def touch_out
     @in_transit = false
   end
+
+  def in_journey?
+    @in_transit
+  end
 end
