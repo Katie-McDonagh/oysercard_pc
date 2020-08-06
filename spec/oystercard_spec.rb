@@ -7,7 +7,7 @@ describe OysterCard do
   end
 
   it 'starts with the card being outside a journey' do
-    expect(subject.in_transit?).to be false 
+    expect(subject.in_transit).to be false 
   end
 
   describe '#top_up' do

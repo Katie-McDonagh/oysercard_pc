@@ -2,10 +2,11 @@ class OysterCard
 
   MAXBALANCE = 90
 
-  attr_reader :balance
+  attr_reader :balance, :in_transit
 
   def initialize
     @balance = 0
+    @in_transit = false
   end
 
   def top_up(number)
