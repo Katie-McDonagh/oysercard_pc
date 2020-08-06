@@ -9,6 +9,13 @@ describe OysterCard do
     expect(subject.entry_station).to eq station
   end
 
+  it 'stores the exit station' do
+    subject.top_up(10)
+    subject.touch_in(station)
+    subject.touch_out(station)
+    expect(subject.exit_station).to eq station
+  end
+
   it 'has a balance of 0 upon initialization' do
     expect(subject.balance).to eq(0)
   end
