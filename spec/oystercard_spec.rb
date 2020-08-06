@@ -6,6 +6,7 @@ describe OysterCard do
   let(:exit_station) { double :station }
   let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
 
+
 it 'stores a journey' do
   subject.top_up(10)
   subject.touch_in(entry_station)
@@ -20,7 +21,7 @@ end
     end
 
   it 'stores the entry station' do
-    expect(subject.entry_station).to eq entry_station
+    expect(subject.journeys).to include journey
   end
 
   it 'stores the exit station' do
@@ -34,7 +35,7 @@ end
   end
 
   it 'starts with the card being outside a journey' do
-    expect(subject.entry_station).to be nil
+    expect(subject.journeys).to be {}
   end
 
   describe '#top_up' do
@@ -53,16 +54,16 @@ end
   describe '#in_transit' do
     before do
       subject.top_up(10)
-      subject.touch_in(entry_station)
+      subject.touch_in(station)
     end
 
     it 'allows a card to be touched out after a journey' do
       subject.touch_out(exit_station)
-      expect(subject.entry_station).to be nil
+      expect(subject.in_journey?).to be false
     end
 
     it 'allows a card to be touched in' do
-      expect(subject.entry_station).to eq entry_station
+      expect(subject.journeys).to include journey[:entry_station]
     end
 
     it 'can read a cards status to see if its in a journey' do
