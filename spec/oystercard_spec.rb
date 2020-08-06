@@ -6,6 +6,10 @@ describe OysterCard do
     expect(subject.balance).to eq(0)
   end
 
+  it 'starts with the card being outside a journey' do
+    expect(subject.in_transit?).to be false 
+  end
+
   describe '#top_up' do
 
     it 'has the ability to top up a card' do
