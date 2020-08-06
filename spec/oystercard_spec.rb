@@ -2,19 +2,32 @@ require 'oystercard'
 
 describe OysterCard do
   let(:station){ double :station }
+  let(:entry_station) { double :station }
+  let(:exit_station) { double :station }
+  let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
+
+it 'stores a journey' do
+  subject.top_up(10)
+  subject.touch_in(entry_station)
+  subject.touch_out(exit_station)
+  expect(subject.journeys).to include journey
+end
+
+  describe 'storing the stations' do
+    before do
+      subject.top_up(10)
+      subject.touch_in(entry_station)
+    end
 
   it 'stores the entry station' do
-    subject.top_up(10)
-    subject.touch_in(station)
-    expect(subject.entry_station).to eq station
+    expect(subject.entry_station).to eq entry_station
   end
 
   it 'stores the exit station' do
-    subject.top_up(10)
-    subject.touch_in(station)
-    subject.touch_out(station)
-    expect(subject.exit_station).to eq station
+    subject.touch_out(exit_station)
+    expect(subject.exit_station).to eq exit_station
   end
+end
 
   it 'has a balance of 0 upon initialization' do
     expect(subject.balance).to eq(0)
@@ -40,16 +53,16 @@ describe OysterCard do
   describe '#in_transit' do
     before do
       subject.top_up(10)
-      subject.touch_in(station)
+      subject.touch_in(entry_station)
     end
 
     it 'allows a card to be touched out after a journey' do
-      subject.touch_out(station)
+      subject.touch_out(exit_station)
       expect(subject.entry_station).to be nil
     end
 
     it 'allows a card to be touched in' do
-      expect(subject.entry_station).to eq station
+      expect(subject.entry_station).to eq entry_station
     end
 
     it 'can read a cards status to see if its in a journey' do
@@ -57,19 +70,19 @@ describe OysterCard do
     end
 
     it 'can read a cards status to see if it has finished a journey' do
-      subject.touch_out(station)
+      subject.touch_out(exit_station)
       expect(subject.in_journey?).to be false
     end
   end
 
   it 'has a minimum balance requirment' do
-    expect{ subject.touch_in(station) }.to raise_error("minimum balance of #{OysterCard::MINBALANCE} required to touch in")
+    expect{ subject.touch_in(entry_station) }.to raise_error("minimum balance of #{OysterCard::MINBALANCE} required to touch in")
   end
 
   it 'deducts the correct fare from the card upon touch out' do
     subject.top_up(10)
-    subject.touch_in(station)
-    subject.touch_out(station)
-    expect{ subject.touch_out(station) }.to change{ subject.balance }.by (-OysterCard::MINCHARGE)
+    subject.touch_in(entry_station)
+    subject.touch_out(exit_station)
+    expect{ subject.touch_out(exit_station) }.to change{ subject.balance }.by (-OysterCard::MINCHARGE)
   end
 end
