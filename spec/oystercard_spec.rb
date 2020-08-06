@@ -31,6 +31,7 @@ describe OysterCard do
 
   describe '#in_transit' do
     before do
+      subject.top_up(10)
       subject.touch_in
     end
 
