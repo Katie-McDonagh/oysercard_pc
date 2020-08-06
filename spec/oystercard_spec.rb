@@ -10,6 +10,11 @@ describe OysterCard do
     expect(subject.in_transit).to be false 
   end
 
+  it 'allows a card to be touched in' do
+    subject.touch_in
+    expect(subject.in_transit).to be true
+  end
+
   describe '#top_up' do
 
     it 'has the ability to top up a card' do

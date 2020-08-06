@@ -17,4 +17,8 @@ class OysterCard
   def deduct(number)
     @balance -= number
   end
+
+  def touch_in
+    @in_transit = true
+  end
 end
