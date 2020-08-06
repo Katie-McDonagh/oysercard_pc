@@ -44,7 +44,7 @@ describe OysterCard do
     end
 
     it 'allows a card to be touched out after a journey' do
-      subject.touch_out
+      subject.touch_out(station)
       expect(subject.entry_station).to be nil
     end
 
@@ -57,7 +57,7 @@ describe OysterCard do
     end
 
     it 'can read a cards status to see if it has finished a journey' do
-      subject.touch_out
+      subject.touch_out(station)
       expect(subject.in_journey?).to be false
     end
   end
@@ -69,7 +69,7 @@ describe OysterCard do
   it 'deducts the correct fare from the card upon touch out' do
     subject.top_up(10)
     subject.touch_in(station)
-    subject.touch_out
-    expect{ subject.touch_out }.to change{ subject.balance }.by (-OysterCard::MINCHARGE)
+    subject.touch_out(station)
+    expect{ subject.touch_out(station) }.to change{ subject.balance }.by (-OysterCard::MINCHARGE)
   end
 end
