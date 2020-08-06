@@ -14,7 +14,7 @@ describe OysterCard do
   end
 
   it 'starts with the card being outside a journey' do
-    expect(subject.in_transit).to be false 
+    expect(subject.entry_station).to be nil
   end
 
   describe '#top_up' do
@@ -38,11 +38,11 @@ describe OysterCard do
 
     it 'allows a card to be touched out after a journey' do
       subject.touch_out
-      expect(subject.in_transit).to be false
+      expect(subject.entry_station).to be nil
     end
 
     it 'allows a card to be touched in' do
-      expect(subject.in_transit).to be true
+      expect(subject.entry_station).to eq station
     end
 
     it 'can read a cards status to see if its in a journey' do
