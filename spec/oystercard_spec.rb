@@ -1,7 +1,13 @@
 require 'oystercard'
 
 describe OysterCard do
+  let(:station){ double :station }
 
+  it 'stores the entry station' do
+    subject.touch_in(station)
+    expect(subject.entry_station).to eq station
+  end
+  
   it 'has a balance of 0 upon initialization' do
     expect(subject.balance).to eq(0)
   end
