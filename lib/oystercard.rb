@@ -2,6 +2,7 @@ class OysterCard
 
   MINBALANCE = 1
   MAXBALANCE = 90
+  MINCHARGE = -1
 
   attr_reader :balance, :in_transit
 
@@ -25,6 +26,7 @@ class OysterCard
   end
 
   def touch_out
+    deduct(MINBALANCE)
     @in_transit = false
   end
 

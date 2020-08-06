@@ -57,4 +57,11 @@ describe OysterCard do
   it 'has a minimum balance requirment' do
     expect{ subject.touch_in }.to raise_error("minimum balance of #{OysterCard::MINBALANCE} required to touch in")
   end
+
+  it 'deducts the correct fare from the card upon touch out' do
+    subject.top_up(10)
+    subject.touch_in
+    subject.touch_out
+    expect{ subject.touch_out }.to change{ subject.balance }.by (OysterCard::MINCHARGE)
+  end
 end
