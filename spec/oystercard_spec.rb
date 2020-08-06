@@ -23,12 +23,6 @@ describe OysterCard do
     end
   end
 
-  it 'allows a cards balance to be deducted from' do 
-    subject.top_up(10)
-    subject.deduct(10)
-    expect(subject.balance).to eq(0)
-  end
-
   describe '#in_transit' do
     before do
       subject.top_up(10)

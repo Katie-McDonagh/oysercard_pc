@@ -16,10 +16,6 @@ class OysterCard
     @balance += number
   end
 
-  def deduct(number)
-    @balance -= number
-  end
-
   def touch_in
     raise "minimum balance of #{OysterCard::MINBALANCE} required to touch in" if @balance < MINBALANCE
     @in_transit = true
@@ -33,4 +29,11 @@ class OysterCard
   def in_journey?
     @in_transit
   end
+
+  private 
+
+  def deduct(number)
+    @balance -= number
+  end
+
 end
