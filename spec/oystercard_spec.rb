@@ -10,6 +10,11 @@ describe OysterCard do
     expect(subject.in_transit).to be false 
   end
 
+  it 'can read a cards status to see if its in a journey' do
+    subject.touch_in
+    expect(subject.in_journey?).to be true
+  end
+
   it 'allows a card to be touched in' do
     subject.touch_in
     expect(subject.in_transit).to be true
