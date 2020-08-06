@@ -43,15 +43,17 @@ describe OysterCard do
       expect(subject.in_transit).to be true
     end
 
-  it 'can read a cards status to see if its in a journey' do
-    expect(subject.in_journey?).to be true
+    it 'can read a cards status to see if its in a journey' do
+      expect(subject.in_journey?).to be true
+    end
+
+    it 'can read a cards status to see if it has finished a journey' do
+      subject.touch_out
+      expect(subject.in_journey?).to be false
+    end
   end
 
-  it 'can read a cards status to see if it has finished a journey' do
-    subject.touch_out
-    expect(subject.in_journey?).to be false
-  end
-
-
+  it 'has a minimum balance requirment' do
+    expect{ subject.touch_in }.to raise_error("minimum balance of #{OysterCard::MINBALANCE} required to touch in")
   end
 end

@@ -1,5 +1,6 @@
 class OysterCard 
 
+  MINBALANCE = 1
   MAXBALANCE = 90
 
   attr_reader :balance, :in_transit
@@ -19,6 +20,7 @@ class OysterCard
   end
 
   def touch_in
+    raise "minimum balance of #{OysterCard::MINBALANCE} required to touch in" if @balance < MINBALANCE
     @in_transit = true
   end
 
