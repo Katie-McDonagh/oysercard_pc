@@ -2,7 +2,7 @@ class OysterCard
 
   MINBALANCE = 1
   MAXBALANCE = 90
-  MINCHARGE = -1
+  MINCHARGE = 1
 
   attr_reader :balance, :in_transit
 

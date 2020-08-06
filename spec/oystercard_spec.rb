@@ -62,6 +62,6 @@ describe OysterCard do
     subject.top_up(10)
     subject.touch_in
     subject.touch_out
-    expect{ subject.touch_out }.to change{ subject.balance }.by (OysterCard::MINCHARGE)
+    expect{ subject.touch_out }.to change{ subject.balance }.by (-OysterCard::MINCHARGE)
   end
 end
