@@ -1,6 +1,7 @@
 class Journey
 
   MINCHARGE = 1
+  PENALTYFARE = 6
 
   attr_reader :entry_station, :exit_station
 
@@ -22,6 +23,11 @@ class Journey
   end
 
   def calculate_fare
-    MINCHARGE
+    if complete?
+      MINCHARGE
+    else
+      PENALTYFARE
+    end
   end
+
 end

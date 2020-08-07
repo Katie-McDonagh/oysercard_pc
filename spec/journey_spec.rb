@@ -45,4 +45,9 @@ let(:exit_station) { double :station }
     expect(subject.calculate_fare).to eq Journey::MINCHARGE
   end
 
+  it 'returns a penalty fare for an incomplete journey' do
+    subject.set_entry_station(station)
+    expect(subject.calculate_fare).to eq Journey::PENALTYFARE
+  end
+
 end
