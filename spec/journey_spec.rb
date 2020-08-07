@@ -5,6 +5,7 @@ let(:station){ double :station }
 let(:entry_station) { double :station }
 let(:exit_station) { double :station }
 
+describe "When checking if a journey is complete it" do
   it "knows if a journey is not complete" do
     subject.set_entry_station(station)
     expect(subject.complete?).to eq false
@@ -20,7 +21,9 @@ let(:exit_station) { double :station }
     subject.set_exit_station(station)
     expect(subject.complete?).to eq true
   end
+end
 
+describe "contains info about entry and exit stations, it" do
   it 'starts with an empty entry station' do
     expect(subject.entry_station).to be(nil)
   end
@@ -37,8 +40,10 @@ let(:exit_station) { double :station }
   it 'sets an exit station' do
     subject.set_exit_station(exit_station)
     expect(subject.exit_station).to eq exit_station
-  end 
+  end
+end
 
+describe "calculates fares, it" do
   it 'returns a minimum fare for a complete journey' do
     subject.set_entry_station(station)
     subject.set_exit_station(station)
@@ -49,5 +54,6 @@ let(:exit_station) { double :station }
     subject.set_entry_station(station)
     expect(subject.calculate_fare).to eq Journey::PENALTYFARE
   end
+end
 
 end
