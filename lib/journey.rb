@@ -1,6 +1,6 @@
 class Journey
 
-  attr_reader :entry_station, :exit_station, :current_journey
+  attr_reader :entry_station, :exit_station
 
   def intialize
     @entry_station 
