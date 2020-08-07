@@ -25,8 +25,8 @@ end
   end
 
   it 'stores the exit station' do
-    subject.touch_out(exit_station)
-    expect(subject.exit_station).to eq exit_station
+    subject.touch_out(station)
+    expect(subject.journeys).to include {exit_station station}
   end
 end
 
