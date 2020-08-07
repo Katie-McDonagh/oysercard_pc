@@ -38,4 +38,11 @@ let(:exit_station) { double :station }
     subject.set_exit_station(exit_station)
     expect(subject.exit_station).to eq exit_station
   end 
+
+  it 'returns a minimum fare for a complete journey' do
+    subject.set_entry_station(station)
+    subject.set_exit_station(station)
+    expect(subject.calculate_fare).to eq Journey::MINCHARGE
+  end
+
 end

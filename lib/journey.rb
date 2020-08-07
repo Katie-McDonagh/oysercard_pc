@@ -1,5 +1,7 @@
 class Journey
 
+  MINCHARGE = 1
+
   attr_reader :entry_station, :exit_station
 
   def intialize
@@ -17,5 +19,9 @@ class Journey
 
   def complete?
    @exit_station != nil && @entry_station != nil
+  end
+
+  def calculate_fare
+    MINCHARGE
   end
 end
