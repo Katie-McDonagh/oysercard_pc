@@ -2,8 +2,13 @@ require 'journey'
 
 describe Journey do
 let(:station){ double :station }
-let(:entry_station) {double :station }
+let(:entry_station) { double :station }
 let(:exit_station) { double :station }
+
+  it "knows if a journey is not complete" do
+    subject.set_entry_station(station)
+    expect(subject.complete?).to eq false
+  end
 
   it 'starts with an empty entry station' do
     expect(subject.entry_station).to be(nil)
