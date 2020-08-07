@@ -7,13 +7,6 @@ describe OysterCard do
   let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
 
 
-it 'stores a journey' do
-  subject.top_up(10)
-  subject.touch_in(entry_station)
-  subject.touch_out(exit_station)
-  expect(subject.journeys).to include journey
-end
-
   describe 'storing the stations' do
     before do
       subject.top_up(10)
@@ -27,6 +20,11 @@ end
   it 'stores the exit station' do
     subject.touch_out(station)
     expect(subject.journeys).to include {exit_station station}
+  end
+
+  it 'stores a complete journey' do
+    subject.touch_out(exit_station)
+    expect(subject.journeys).to include journey
   end
 end
 
