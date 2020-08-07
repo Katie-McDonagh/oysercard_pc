@@ -15,4 +15,9 @@ let(:station){ double :station }
     subject.set_entry_station(station)
     expect(subject.entry_station).to eq station
   end 
+
+  it 'sets an exit station' do
+    subject.set_exit_station(station)
+    expect(subject.exit_station).to eq station
+  end 
 end
