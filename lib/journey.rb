@@ -23,11 +23,7 @@ class Journey
   end
 
   def calculate_fare
-    if complete?
-      MINCHARGE
-    else
-      PENALTYFARE
-    end
+    complete? ? MINCHARGE : PENALTYFARE
   end
 
 end
