@@ -10,6 +10,17 @@ let(:exit_station) { double :station }
     expect(subject.complete?).to eq false
   end
 
+  it "knows if a journey has not been touched out" do
+    subject.set_exit_station(station)
+    expect(subject.complete?).to eq false
+  end
+
+  it "completes a journey" do
+    subject.set_entry_station(station)
+    subject.set_exit_station(station)
+    expect(subject.complete?).to eq true
+  end
+
   it 'starts with an empty entry station' do
     expect(subject.entry_station).to be(nil)
   end
