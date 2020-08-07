@@ -21,7 +21,7 @@ end
     end
 
   it 'stores the entry station' do
-    expect(subject.journeys).to include journey
+    expect(subject.journeys).to include {entry_station station}
   end
 
   it 'stores the exit station' do
@@ -63,7 +63,7 @@ end
     end
 
     it 'allows a card to be touched in' do
-      expect(subject.journeys).to include journey[:entry_station]
+      expect(subject.journeys).to include {entry_station station}
     end
 
     it 'can read a cards status to see if its in a journey' do
