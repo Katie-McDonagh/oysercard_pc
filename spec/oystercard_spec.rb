@@ -4,7 +4,7 @@ describe OysterCard do
   let(:station){ double :station }
   let(:entry_station) { double :station }
   let(:exit_station) { double :station }
-  let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
+  let(:journey){ [entry_station: station, exit_station: station] }
 
 
   describe 'storing the stations' do
@@ -23,8 +23,13 @@ describe OysterCard do
   end
 
   it 'stores a complete journey' do
-    subject.touch_out(exit_station)
-    expect(subject.journeys).to include journey
+    # subject {described_class.new(name: "Old Street", zone: 1)}
+    # subject.touch_out(exit_station)
+    # expect(subject.journeys).to include journey
+    subject.touch_in("Bank")
+    subject.touch_out("Victoria")
+    expect(subject.journeys.last.entry_station).to eq "Bank"
+    expect(subject.journeys.last.exit_station).to eq "Victoria"
   end
 end
 
